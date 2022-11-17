@@ -1,22 +1,9 @@
-#include <iostream>
 #include "food.h"
 #include "animal.h"
 
-class Needs {
-private:
-	Bladder bladder;
-	Social social;
-	Energy energy;
-	Hunger hunger;
-	Fun fun;
-	Hygiene hygiene;
-public:
-	Needs();
-};
-
 class Bladder {
 private:
-	int level;
+	int m_level;
 public:
 	Bladder();
 	void UseToilet();
@@ -24,17 +11,17 @@ public:
 
 class Social {
 private:
-	int level;
+	int m_level;
 public:
 	Social();
-	void Talk(Person person);
-	void Text(Person preson);
-	void PhoneCall(Person person);
+	void Talk(Person& person);
+	void Text(Person& preson);
+	void PhoneCall(Person& person);
 };
 
 class Energy {
 private:
-	int level;
+	int m_level;
 public:
 	Energy();
 	void Sleep();
@@ -42,27 +29,39 @@ public:
 
 class Hunger {
 private:
-	int level;
+	int m_level;
 public:
 	Hunger();
-	void Eat(Food food);
+	void Eat(Food& food);
 };
 
 class Fun {
 private:
-	int level;
+	int m_level;
 public:
 	Fun();
 	void Dance();
 	void PlayGuitar();
 	void PlayComputer();
-	void PetAnimal(Animal animal);
+	void PetAnimal(Animal& animal);
 };
 
 class Hygiene {
 private:
-	int level;
+	int m_level;
 public:
 	Hygiene();
 	void Shower();
+};
+
+class Needs {
+private:
+	Bladder m_bladder;
+	Social m_social;
+	Energy m_energy;
+	Hunger m_hunger;
+	Fun m_fun;
+	Hygiene m_hygiene;
+public:
+	Needs();
 };
