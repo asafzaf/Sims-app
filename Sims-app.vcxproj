@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Aminal.cpp" />
+    <ClCompile Include="food.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Job.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Needs.cpp" />
     <ClCompile Include="person.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animal.h" />
     <ClInclude Include="food.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="job.h" />
     <ClInclude Include="needs.h" />
     <ClInclude Include="person.h" />
