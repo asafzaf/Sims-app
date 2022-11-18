@@ -1,8 +1,7 @@
 #include "job.h"
 
 Job::Job() {
-	const char* ttl = "unemployed";
-	m_title = ttl;
+	m_title = "unemployed";
 	m_salary = 0;
 	m_dailyWorkHours = 0;
 }

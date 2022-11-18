@@ -1,4 +1,3 @@
-#include <iostream>
 #include "needs.h"
 #include "job.h"
 
@@ -24,6 +23,6 @@ public:
 	void setMooney(int m_money) { m_money = m_money; }
 
 	Person();
-	Person(int id, char* firsname, char* lastname);
+	Person(int id, char* firstname, char* lastname);
 	~Person();
 };

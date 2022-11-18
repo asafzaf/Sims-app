@@ -23,8 +23,8 @@ public:
 
 	int getMaxOfFamily() { return m_max_of_family; }
 
-	void startGame();
 	void addPerson();
 	void deletePerson();
-	void doSomething();
+	int choosePerson();
+	//void doSomething();
 };

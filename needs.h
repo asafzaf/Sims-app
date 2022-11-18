@@ -1,11 +1,16 @@
-#include "food.h"
-#include "animal.h"
+#pragma once
+
+class Person;
+class Food;
+class Animal;
 
 class Bladder {
 private:
 	int m_level;
 public:
 	Bladder();
+	int getLevel() { return m_level; }
+	void setLevel(int level) { m_level = level; }
 	void UseToilet();
 };
 
@@ -14,6 +19,8 @@ private:
 	int m_level;
 public:
 	Social();
+	int getLevel() { return m_level; }
+	void setLevel(int level) { m_level = level;}
 	void Talk(Person& person);
 	void Text(Person& preson);
 	void PhoneCall(Person& person);
@@ -24,6 +31,8 @@ private:
 	int m_level;
 public:
 	Energy();
+	int getLevel() { return m_level; }
+	void setLevel(int level) { m_level = level; }
 	void Sleep();
 };
 
@@ -32,6 +41,8 @@ private:
 	int m_level;
 public:
 	Hunger();
+	int getLevel() { return m_level; }
+	void setLevel(int level) { m_level = level; }
 	void Eat(Food& food);
 };
 
@@ -40,6 +51,8 @@ private:
 	int m_level;
 public:
 	Fun();
+	int getLevel() { return m_level; }
+	void setLevel(int level) { m_level = level; }
 	void Dance();
 	void PlayGuitar();
 	void PlayComputer();
@@ -51,6 +64,8 @@ private:
 	int m_level;
 public:
 	Hygiene();
+	int getLevel() { return m_level; }
+	void setLevel(int level) { m_level = level; }
 	void Shower();
 };
 

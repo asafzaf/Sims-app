@@ -17,39 +17,57 @@ Fun::Fun() {m_level = 5;}
 Hygiene::Hygiene() {m_level = 5;}
 
 void Bladder::UseToilet() {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Social::Talk(Person& person) {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Social::Text(Person& person) {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Social::PhoneCall(Person& person) {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Energy::Sleep() {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Hunger::Eat(Food& food) {
-	m_level += food.getWorth();
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Fun::Dance() {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Fun::PlayGuitar() {
-	m_level += 7;
+	setLevel(getLevel() + 7);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Fun::PlayComputer() {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
 
 void Fun::PetAnimal(Animal& animal) {
@@ -58,5 +76,7 @@ void Fun::PetAnimal(Animal& animal) {
 }
 
 void Hygiene::Shower() {
-	m_level += 5;
+	setLevel(getLevel() + 5);
+	if (getLevel() > 10)
+		setLevel(10);
 }
