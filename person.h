@@ -22,6 +22,12 @@ public:
 	int getMoney() { return m_money; }
 	void setMooney(int m_money) { m_money = m_money; }
 
+	Needs getNeeds() { return m_needs; }
+	void setNeeds(Needs needs) { m_needs = needs; }
+
+	Job getJob() { return m_job; }
+	void SetJob(Job job) { m_job = job; }
+
 	Person();
 	Person(int id, char* firstname, char* lastname);
 	~Person();

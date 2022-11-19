@@ -24,7 +24,7 @@ Game::Game() {
 
 void Game::addPerson() {
 	if (m_number_of_persons == m_max_of_family) { // Check if the family is full (10 persons)
-		std::cout << std::endl << "Max family members... please delete sombody to create new" << std::endl;
+		std::cout << std::endl << "Max family members... please delete sombody before you create new one..." << std::endl;
 		return;
 	}
 
@@ -59,6 +59,7 @@ void Game::deletePerson() { // Choose and delete one of the persons.
 		std::cout << std::endl << "Invalid No. of person!" << std::endl;
 		return;
 	}
+
 	delete ptr[choosen_num];
 	for (int i = choosen_num; i < m_number_of_persons; i++)
 		ptr[i] = ptr[i + 1];
@@ -82,6 +83,7 @@ int Game::choosePerson() { // Choosing function for persons
 	std::cout << "No. | ID  |  name       |   money " << std::endl;
 	for (int i = 0; i < m_number_of_persons; i++) {
 		std::cout << (i+1) << " | " << ptr[i]->getID() << "|" << ptr[i]->getFirstName() << " | " << ptr[i]->getLastName() << " | " << ptr[i]->getMoney() << std::endl;;
+	ptr[i]->getNeeds().getBladder()
 	}
 	std::cout << std::endl << "Type No. : ";
 	std::cin >> choose;
