@@ -3,7 +3,7 @@
 
 class Game {
 private:
-	Person* m_person;
+	Person** m_person;
 	char* m_familyname;
 	int m_IDcounter;
 	int m_number_of_persons;
@@ -26,5 +26,6 @@ public:
 	void addPerson();
 	void deletePerson();
 	int choosePerson();
+
 	//void doSomething();
 };

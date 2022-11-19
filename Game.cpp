@@ -7,8 +7,16 @@ Game::Game() {
 	char* name = new char[20];
 	std::cin >> name;
 	m_familyname = name;
-	std::cout << std::endl << "Welcome to the " << m_familyname << " family!" << std::endl << "-------------------------" << std::endl;
-	m_person = nullptr;
+	std::cout << std::endl << "Welcome to the " << m_familyname << " family!" 
+		<< std::endl << "-------------------------" << std::endl;
+
+	m_person = new Person*[10];
+	if (m_person == NULL) { // check pointer.
+		std::cout << "Failed to create family!" << std::endl;
+		return;
+	}
+	for (int i = 0; i < m_max_of_family; i++)
+		m_person[i] = nullptr;
 	m_IDcounter = 100;
 	m_number_of_persons = 0;
 	m_max_of_family = 10;
@@ -31,72 +39,34 @@ void Game::addPerson() {
 	std::cout << "- Last Name: ";
 	std::cin >> last;
 
-
-	Person* person_array = new Person[m_number_of_persons+1];// Creating new array with the new size of persons.
-	if (person_array == NULL) { // check pointer.
-		std::cout << "Failed to create new person!" << std::endl;
-		return;
-	}	
-	if ( m_number_of_persons != 0 )
-		memcpy(person_array, m_person, m_number_of_persons * sizeof(m_person));
-
-	m_number_of_persons++;  // Updating the new number of persons.
 	m_IDcounter++; // Giving new ID (increment).
 
-	person_array[m_number_of_persons-1] = Person(m_IDcounter, first, last); // Add new data.
+	m_person[m_number_of_persons] = new Person(m_IDcounter, first, last);// Creating new array with the new size of persons.;
 
 	std::cout << "You created new person!" << std::endl // Succesfull
-		<< "Your new person: " << person_array[m_number_of_persons-1].getFirstName() << " " << person_array[m_number_of_persons-1].getLastName() << " ID #" << person_array[m_number_of_persons-1].getID() << std::endl;
+		<< "Your new person: " <<    m_person[m_number_of_persons]->getFirstName() << " " << m_person[m_number_of_persons]->getLastName() << " ID #" << m_person[m_number_of_persons]->getID() << std::endl;
 
-	m_person = person_array; // Updating the new pointer of the game for the new one.
+	m_number_of_persons++;  // Updating the new number of persons.
 
 	return;
 }
 
 void Game::deletePerson() { // Choose and delete one of the persons.
-	int choose_num = choosePerson();
-	Person* ptr = m_person;
-	if (choose_num == 0) {
-		m_number_of_persons--;
-		Person* person_array = new Person[m_number_of_persons];
-		if (person_array == NULL) { // check pointer.
-			std::cout << "Failed to create new list!" << std::endl;
-			m_number_of_persons++;
-			return;
-		}
-		ptr++;
-
-		memcpy(person_array, ptr, m_number_of_persons * sizeof(m_person));
-
-		m_person = ptr;
-		return;
-	}
-	else if ( (choose_num + 1 > m_number_of_persons) || (choose_num < 0) ) {
+	int choosen_num = choosePerson();
+	Person** ptr = m_person;
+	
+	if ((choosen_num + 1 > m_number_of_persons) || (choosen_num < 0)) { // Check if there is a person in the slot.
 		std::cout << std::endl << "Invalid No. of person!" << std::endl;
 		return;
 	}
-	else {
-		for (int i = choose_num; i < (m_number_of_persons - 1) ; i++) {
-			ptr[choose_num] = ptr[choose_num + 1];
-		}
-		m_number_of_persons--;
+	delete ptr[choosen_num];
+	for (int i = choosen_num; i < m_number_of_persons; i++)
+		ptr[i] = ptr[i + 1];
 
-		Person* person_array = new Person[m_number_of_persons];
-		if (person_array == NULL) { // check pointer.
-			std::cout << "Failed to create new list!" << std::endl;
-			m_number_of_persons++;
-			return;
-		}
+	m_number_of_persons--;
 
-		memcpy(person_array, m_person, m_number_of_persons * sizeof(m_person));
-
-		m_person = person_array;
-
-		std::cout << std::endl << "Sucessfully deleted!" << std::endl;
-
-		return;
-	}
-
+	std::cout << std::endl << "Sucessfully deleted!" << std::endl;
+	return;
 }
 
 //void Game::doSomething() { // A routin of do something...
@@ -106,12 +76,12 @@ void Game::deletePerson() { // Choose and delete one of the persons.
 int Game::choosePerson() { // Choosing function for persons
 	if (m_number_of_persons == 0)
 		std::cout << std::endl << "There are no persons!" << std::endl;
-	Person* ptr = m_person;
+	Person** ptr = m_person;
 	int choose;
 	std::cout << std::endl << "Please choose a person (by No.):" << std::endl;
 	std::cout << "No. | ID  |  name       |   money " << std::endl;
 	for (int i = 0; i < m_number_of_persons; i++) {
-		std::cout << (i+1) << " | " << ptr->getID() << "|" << ptr->getFirstName() << " | " << ptr->getLastName() << " | " << ptr->getMoney() << std::endl;;
+		std::cout << (i+1) << " | " << ptr[i]->getID() << "|" << ptr[i]->getFirstName() << " | " << ptr[i]->getLastName() << " | " << ptr[i]->getMoney() << std::endl;;
 	}
 	std::cout << std::endl << "Type No. : ";
 	std::cin >> choose;
@@ -121,6 +91,6 @@ int Game::choosePerson() { // Choosing function for persons
 }
 
 Game::~Game() {
-	delete m_person;
+	delete[] m_person;
 	delete m_familyname;
 }
