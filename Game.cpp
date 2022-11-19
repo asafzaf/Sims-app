@@ -19,6 +19,7 @@ void Game::addPerson() {
 		std::cout << std::endl << "Max family members... please delete sombody to create new" << std::endl;
 		return;
 	}
+
 	char* first = new char[20];
 	char* last = new char[20]; // After checking - the family is under 10 members.
 	std::cout << std::endl << "Creating new person page:" << std::endl

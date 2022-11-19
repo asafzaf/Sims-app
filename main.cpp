@@ -3,7 +3,6 @@
 using namespace std;
 
 int main() {
-	const int max_of_family = 10;
 	int choise = 99;
 	Game family = Game();
 
@@ -21,6 +20,7 @@ int main() {
 		{
 		case 1:
 			family.addPerson();
+			//Person* per1 = new Person(555, "asaf", "zaf");
 			break;
 		case 2:
 			family.deletePerson();
