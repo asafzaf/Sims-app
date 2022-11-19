@@ -22,19 +22,19 @@ void Bladder::UseToilet() {
 		setLevel(10);
 }
 
-void Social::Talk(Person& person) {
+void Social::Talk(Person* person) {
 	setLevel(getLevel() + 5);
 	if (getLevel() > 10)
 		setLevel(10);
 }
 
-void Social::Text(Person& person) {
+void Social::Text(Person* person) {
 	setLevel(getLevel() + 5);
 	if (getLevel() > 10)
 		setLevel(10);
 }
 
-void Social::PhoneCall(Person& person) {
+void Social::PhoneCall(Person* person) {
 	setLevel(getLevel() + 5);
 	if (getLevel() > 10)
 		setLevel(10);

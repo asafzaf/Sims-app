@@ -27,7 +27,7 @@ void Game::addPerson() {
 		std::cout << std::endl << "Max family members... please delete sombody before you create new one..." << std::endl;
 		return;
 	}
-
+	
 	char* first = new char[20];
 	char* last = new char[20]; // After checking - the family is under 10 members.
 	std::cout << std::endl << "Creating new person page:" << std::endl
@@ -53,6 +53,9 @@ void Game::addPerson() {
 
 void Game::deletePerson() { // Choose and delete one of the persons.
 	int choosen_num = choosePerson();
+	if (choosen_num == 99)
+		return;
+	
 	Person** ptr = m_person;
 	
 	if ((choosen_num + 1 > m_number_of_persons) || (choosen_num < 0)) { // Check if there is a person in the slot.
@@ -70,20 +73,133 @@ void Game::deletePerson() { // Choose and delete one of the persons.
 	return;
 }
 
-//void Game::doSomething() { // A routin of do something...
-//
-//}
+void Game::doSomething() { // A routin of do something...
+	if (m_number_of_persons == 0) {
+		std::cout << std::endl << "There are no persons!" << std::endl;
+		return;
+	}
+	Person** ptr = m_person;
+	
+	std::cout << "Let's do something!" << std::endl << "--------------------" << std::endl;
+
+	for (int i = 0; i < m_number_of_persons; i++) {
+		std::cout << "No. | ID  |  name       | Bladder lvl | Social lvl | Energy lvl | Hunger lvl | Fun lvl | Hygiene lvl " << std::endl;
+		std::cout << (i + 1) << " | " 
+			<< ptr[i]->getID() << "|" 
+			<< ptr[i]->getFirstName() << " | " 
+			<< ptr[i]->getLastName() << " | " 
+			<< ptr[i]->getNeeds().getBladder().getLevel() << " | "
+			<< ptr[i]->getNeeds().getSocial().getLevel() << " | "
+			<< ptr[i]->getNeeds().getEnergy().getLevel() << " | "
+			<< ptr[i]->getNeeds().getHunger().getLevel() << " | "
+			<< ptr[i]->getNeeds().getFun().getLevel() << " | "
+			<< ptr[i]->getNeeds().getHygiene().getLevel() << std::endl;
+		std::cout << "What do you want your person to do?" << std::endl
+			<< "1- go to toilet" << std::endl
+			<< "2- eat" << std::endl
+			<< "3- talk" << std::endl // there are options
+			<< "4- have fun" << std::endl
+			<< "5- sleep" << std::endl
+			<< "6- take a shower" << std::endl
+			<< "> ";
+		int WhatToDo = 99;
+		int WhatToDo_Social = 0;
+		int WhatToEat = 0;
+		int WhatToPlay = 0;
+		int WithWho = 99;
+		std::cin >> WhatToDo;
+		switch (WhatToDo)
+		{
+		case 1:
+			ptr[i]->getNeeds().getBladder().UseToilet();
+			break;
+		case 2:
+			std::cout << "What kind of social active do you like to do?" << std::endl
+				<< "1- Talk" << std::endl
+				<< "2- Text" << std::endl
+				<< "3- PhoneCall" << std::endl
+				<< "> ";
+			std::cin >> WhatToDo_Social;
+			WithWho = choosePerson();
+			switch (WhatToDo_Social)
+			{
+			case 1:
+				ptr[i]->getNeeds().getSocial().Talk(ptr[WithWho]);
+				break;
+			case 2:
+				ptr[i]->getNeeds().getSocial().Text(ptr[WithWho]);
+				break;
+			case 3:
+				ptr[i]->getNeeds().getSocial().PhoneCall(ptr[WithWho]);
+				break;
+			default:
+				std::cout << "please enter a number from the menu" << std::endl;
+				break;	
+			}
+			break;
+		case 3:
+			ptr[i]->getNeeds().getEnergy().Sleep();
+			break;
+		case 4:
+			std::cin >> WhatToEat;
+			//ptr[i]->getNeeds().getHunger().Eat();
+			break;
+		case 5:
+			std::cout << "1- Dance" << std::endl
+				<< "2- Play Guitar" << std::endl
+				<< "3- Play Computer" << std::endl
+				<< "> ";
+			std::cin >> WhatToPlay;
+			switch (WhatToPlay)
+			{
+			case 1:
+				ptr[i]->getNeeds().getFun().Dance();
+				break;
+			case 2:
+				ptr[i]->getNeeds().getFun().PlayGuitar();
+				break;
+			case 3:
+				ptr[i]->getNeeds().getFun().PlayComputer();
+				break;
+			case 4:
+				//ptr[i]->getNeeds().getFun().PetAnimal();
+				break;
+			default:
+				break;
+			}
+			break;
+		case 6:
+			ptr[i]->getNeeds().getHygiene().Shower();
+		default:
+			std::cout << "please enter a number from the menu" << std::endl;
+			break;
+		}
+		for (int j = 0; j < m_number_of_persons; j++) // decrease all stats in one.
+		{
+			ptr[j]->getNeeds().getBladder().setLevel((ptr[j]->getNeeds().getBladder().getLevel() - 1));
+			ptr[j]->getNeeds().getSocial().setLevel((ptr[j]->getNeeds().getSocial().getLevel() - 1));
+			ptr[j]->getNeeds().getEnergy().setLevel((ptr[j]->getNeeds().getEnergy().getLevel() - 1));
+			ptr[j]->getNeeds().getHunger().setLevel((ptr[j]->getNeeds().getHunger().getLevel() - 1));
+			ptr[j]->getNeeds().getFun().setLevel((ptr[j]->getNeeds().getFun().getLevel() - 1));
+			ptr[j]->getNeeds().getHygiene().setLevel((ptr[j]->getNeeds().getHygiene().getLevel() - 1));
+		}
+	}
+
+
+
+}
 
 int Game::choosePerson() { // Choosing function for persons
-	if (m_number_of_persons == 0)
+	if (m_number_of_persons == 0) {
 		std::cout << std::endl << "There are no persons!" << std::endl;
+		return 99;
+	}
 	Person** ptr = m_person;
 	int choose;
 	std::cout << std::endl << "Please choose a person (by No.):" << std::endl;
 	std::cout << "No. | ID  |  name       |   money " << std::endl;
 	for (int i = 0; i < m_number_of_persons; i++) {
-		std::cout << (i+1) << " | " << ptr[i]->getID() << "|" << ptr[i]->getFirstName() << " | " << ptr[i]->getLastName() << " | " << ptr[i]->getMoney() << std::endl;;
-	ptr[i]->getNeeds().getBladder()
+		std::cout << (i+1) << " | " << ptr[i]->getID() << "|" << ptr[i]->getFirstName() << " | " << ptr[i]->getLastName() << " | " << ptr[i]->getMoney() << std::endl;
 	}
 	std::cout << std::endl << "Type No. : ";
 	std::cin >> choose;

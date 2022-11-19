@@ -26,6 +26,6 @@ public:
 	void addPerson();
 	void deletePerson();
 	int choosePerson();
+	void doSomething();
 
-	//void doSomething();
 };

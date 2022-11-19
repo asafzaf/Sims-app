@@ -3,10 +3,10 @@
 using namespace std;
 
 int main() {
-	int choise = 99;
+	int choice = 99;
 	Game family = Game();
 
-	while (choise != 0) {
+	while (choice != 0) {
 		cout << "Please choose an option:" << endl
 			<< "-------------------------" << endl
 			<< "1 - Create new person." << endl
@@ -15,19 +15,17 @@ int main() {
 			<< "0 - Exit..." << endl
 			<< "-------------------------" << endl
 			<< "> ";
-		cin >> choise;
-		switch (choise)
+		cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			family.addPerson();
-			//Person* per1 = new Person(555, "asaf", "zaf");
 			break;
 		case 2:
 			family.deletePerson();
 			break;
 		case 3:
-
-			//family.doSomething();
+			family.doSomething();
 			break;
 		case 0:
 			return 0;

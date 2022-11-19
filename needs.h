@@ -21,9 +21,9 @@ public:
 	Social();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level;}
-	void Talk(Person& person);
-	void Text(Person& preson);
-	void PhoneCall(Person& person);
+	void Talk(Person* person);
+	void Text(Person* preson);
+	void PhoneCall(Person* person);
 };
 
 class Energy {
