@@ -176,17 +176,22 @@ void Game::doSomething() { // A routin of do something...
 		}
 		for (int j = 0; j < m_number_of_persons; j++) // decrease all stats in one.
 		{
-			ptr[j]->getNeeds().getBladder().setLevel((ptr[j]->getNeeds().getBladder().getLevel() - 1));
-			ptr[j]->getNeeds().getSocial().setLevel((ptr[j]->getNeeds().getSocial().getLevel() - 1));
-			ptr[j]->getNeeds().getEnergy().setLevel((ptr[j]->getNeeds().getEnergy().getLevel() - 1));
-			ptr[j]->getNeeds().getHunger().setLevel((ptr[j]->getNeeds().getHunger().getLevel() - 1));
-			ptr[j]->getNeeds().getFun().setLevel((ptr[j]->getNeeds().getFun().getLevel() - 1));
-			ptr[j]->getNeeds().getHygiene().setLevel((ptr[j]->getNeeds().getHygiene().getLevel() - 1));
+			int bladderLvl = ptr[j]->getNeeds().getBladder().getLevel();
+			int socialLvl = ptr[j]->getNeeds().getSocial().getLevel();
+			int energyLvl = ptr[j]->getNeeds().getEnergy().getLevel();
+			int hungerLvl = ptr[j]->getNeeds().getHunger().getLevel();
+			int funLvl = ptr[j]->getNeeds().getFun().getLevel();
+			int hygieneLvl = ptr[j]->getNeeds().getHygiene().getLevel();
+
+			ptr[j]->getNeeds().getBladder().setLevel((bladderLvl - 1));
+			ptr[j]->getNeeds().getSocial().setLevel((socialLvl - 1));
+			ptr[j]->getNeeds().getEnergy().setLevel((energyLvl - 1));
+			ptr[j]->getNeeds().getHunger().setLevel((hungerLvl - 1));
+			ptr[j]->getNeeds().getFun().setLevel((funLvl - 1));
+			ptr[j]->getNeeds().getHygiene().setLevel((hungerLvl - 1));
 		}
 	}
-
-
-
+	return;
 }
 
 int Game::choosePerson() { // Choosing function for persons
