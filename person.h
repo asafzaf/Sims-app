@@ -10,6 +10,7 @@ private:
 	Job m_job;
 	int m_money;
 public:
+
 	int getID() { return m_ID; }
 	void setID(int id) { m_ID = id; }
 

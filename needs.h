@@ -11,7 +11,6 @@ public:
 	Bladder();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level; }
-	void UseToilet();
 };
 
 class Social {
@@ -21,9 +20,7 @@ public:
 	Social();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level;}
-	void Talk(Person* person);
-	void Text(Person* preson);
-	void PhoneCall(Person* person);
+
 };
 
 class Energy {
@@ -33,7 +30,6 @@ public:
 	Energy();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level; }
-	void Sleep();
 };
 
 class Hunger {
@@ -43,7 +39,6 @@ public:
 	Hunger();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level; }
-	void Eat(Food& food);
 };
 
 class Fun {
@@ -53,10 +48,7 @@ public:
 	Fun();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level; }
-	void Dance();
-	void PlayGuitar();
-	void PlayComputer();
-	void PetAnimal(Animal& animal);
+
 };
 
 class Hygiene {
@@ -66,7 +58,6 @@ public:
 	Hygiene();
 	int getLevel() { return m_level; }
 	void setLevel(int level) { m_level = level; }
-	void Shower();
 };
 
 class Needs {
@@ -80,6 +71,20 @@ private:
 public:
 	Needs();
 	
+	void useToilet();
+	void Talk(Person* person);
+	void Text(Person* person);
+	void PhoneCall(Person* person);
+	void Sleep();
+	void Eat(Food** food);
+	void Dance();
+	void PlayGuitar();
+	void PlayComputer();
+	void PetAnimal();
+	void Shower();
+	void DropOne();
+
+
 	Bladder getBladder() { return m_bladder; }
 	void setBladder(Bladder bladder) { m_bladder = bladder; }
 
